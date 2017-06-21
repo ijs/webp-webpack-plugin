@@ -1,10 +1,12 @@
 {
   "name": "webp-webpack-plugin",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "webpack plugin of making webp format file ",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint *.js",
+    "prepublish": "npm run lint"
   },
   "repository": {
     "type": "git",
