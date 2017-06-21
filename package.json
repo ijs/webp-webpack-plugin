@@ -1,12 +1,13 @@
 {
   "name": "webp-webpack-plugin",
-  "version": "0.0.2",
+  "version": "0.1.1",
   "description": "webpack plugin of making webp format file ",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint *.js",
-    "prepublish": "npm run lint"
+    "lint": "eslint src/**/*.js",
+    "compile": "node_modules/.bin/babel src -d dist",
+    "prepublish": "npm run lint && npm run compile"
   },
   "repository": {
     "type": "git",
@@ -22,5 +23,20 @@
   "bugs": {
     "url": "https://github.com/jiangtao/webp-webpack-plugin/issues"
   },
-  "homepage": "https://github.com/jiangtao/webp-webpack-plugin#readme"
+  "homepage": "https://github.com/jiangtao/webp-webpack-plugin#readme",
+  "babel": {
+    "plugins": [
+      "transform-es2015-modules-commonjs",
+      "transform-async-to-generator",
+      "transform-class-properties"
+    ]
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
+    "sharp": "^0.18.1"
+  }
 }
