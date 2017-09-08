@@ -1,5 +1,5 @@
 /**
- * reference: 
+ * reference:
  * https://github.com/lcxfs1991/blog/issues/1
  * https://webpack.github.io/docs/how-to-write-a-plugin.html
  * why: https://isux.tencent.com/introduction-of-webp.html
@@ -43,14 +43,18 @@ module.exports = class WebpWebpackPlugin {
                     return
                 }
 
-                resolve(data)
+                resolve({ data: data, info: info })
             })
         })
     }
 
     async wrapWebpRaw(raw, filename) {
         if (raw._value) {
-            return Object.assign(clone(raw), { _value: await this._convertWebp(raw._value) })
+            const webpimage = await this._convertWebp(raw._value);
+            const obj = Object.assign(clone(raw), { _value: webpimage.data });
+            obj.source = obj.source || (() => webpimage.data);
+            obj.size = obj.size || (() => webpimage.size);
+            return obj;
         } else {
             return
         }
@@ -71,4 +75,3 @@ function clone(src) {
 
     return result
 }
-
