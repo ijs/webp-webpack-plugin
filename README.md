@@ -19,10 +19,22 @@ plugins: [
     new WebPWebpackPlugin({
         match: /(jpe?g|png)$/,
         webp: {
-            quality: 80 
+            quality: 80,
+            inject: true, // inject the default runtime code
+            injectCode: '' // inject your code
         }
     })
 ]
 ```
+
+## ChangeLog
+
+[2017-09-19] inject the code that can replace the img src by support webp
+
+## Thanks 
+
+Thanks [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin) for supporting some [hooks](https://github.com/jantimon/html-webpack-plugin#events) for other [plugins](https://github.com/webpack/docs/wiki/plugins)
+
+
 
 

@@ -26,6 +26,10 @@
     },
     "parser": "babel-eslint",
     "rules": {
+        "indent": [
+            2,
+            2
+        ],
         "accessor-pairs": 2,
         "arrow-parens": [
             1,
@@ -230,10 +234,10 @@
             "always"
         ],
         "semi-spacing": [
-            2,
+            1,
             {
                 "before": false,
-                "after": false
+                "after": true
             }
         ],
         "space-before-blocks": [
