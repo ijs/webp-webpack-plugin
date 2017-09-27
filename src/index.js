@@ -16,9 +16,10 @@ const defaultOpts = {
   webp: {
     quality: 80
   },
-  inject: true,
+  inject: false,
   imgSrc: 'data-src',
-  minify: true
+  minify: true,
+  injectCode: ''
 }
 
 const runtimePath = path.resolve(__dirname, './runtime.js')
@@ -47,17 +48,15 @@ module.exports = class WebpWebpackPlugin {
 
     compiler.plugin('compilation', compilation => {
       compilation.plugin('html-webpack-plugin-alter-asset-tags', async (htmlPluginData, next) => {
-
-        if (opts.inject) {
+        if (opts.injectCode) {
+          htmlPluginData.head.unshift(injectScripts)
+        } else if (opts.inject) {
           injectScripts = injectScripts || await this._getInjectRuntime(runtimePath, opts)
-
           if (injectScripts) {
             htmlPluginData.head.unshift(injectScripts)
-            console.log('[webp plugin]:', 'inject successfully')
           }
-        } else if (opts.injectCode) {
-          htmlPluginData.head.unshift(opts.injectCode)
         }
+        console.log('[webp webpack plugin]: inject runtime code successfully')
 
         next(null, htmlPluginData)
       })

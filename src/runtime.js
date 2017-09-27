@@ -23,7 +23,7 @@
   }
 
   if (detectWebp()) {
-    window.addEventListener('DOMContentLoaded', function () {
+    window.addEventListener('DOMContentLoaded', function() {
       var imgs = document.querySelectorAll('img')
       var i, img, src
       for (i in imgs) {

@@ -1,5 +1,7 @@
 # webp-webpack-plugin
 
+[简体中文文档](./README_zh-CN.md)
+
 generate the webp image, make the same `hash` of original image. For example, `vue.e3e41b1.jpg` and `vue.e3e41b1.jpg.webp` exists at the same env.
 
 ## Install
@@ -27,13 +29,33 @@ plugins: [
 ]
 ```
 
+## WebPWebpackPlugin options
+
+- match regexp that help plugin match the images need to transform to webp
+- inject default false. When the value is false, not inject the runtime code. The priority level is lower than the option `injectCode`
+- injectCode default ''. If the value is not empty, the priority level is more than the option `inject`
+
+tips： the inject runtime code help to replace the image src with webp format.
+
+
+## principle
+
+- webp transform 
+
+change the webpack plugin `emit` and modify the  `compilation.assets` object, then generate the webp format image with the same hash as the original img src
+
+- inject runtime code
+
+Thanks to [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin) that support  [event hooks](https://github.com/jantimon/html-webpack-plugin#events)
+
 ## ChangeLog
 
-[2017-09-19] inject the code that can replace the img src by support webp
+[2017-09-19] inject the code that can replace the img src by support webp and developers can inject your custom code
 
-## Thanks 
 
-Thanks [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin) for supporting some [hooks](https://github.com/jantimon/html-webpack-plugin#events) for other [plugins](https://github.com/webpack/docs/wiki/plugins)
+## LICENSE
+
+MIT
 
 
 
