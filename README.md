@@ -59,7 +59,8 @@ Thanks to [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin)
 
 ## ChangeLog
 
-[2017-09-19] inject the code that can replace the img src by support webp and developers can inject your custom code
+- [2017-09-19] inject the code that can replace the img src by support webp and developers can inject your custom code
+- [2017-10-05] add tests, travis, eslint and fix webpack2,3 bugs
 
 
 ## LICENSE
