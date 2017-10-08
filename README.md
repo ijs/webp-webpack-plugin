@@ -1,5 +1,10 @@
 # webp-webpack-plugin
 
+[![Build Status](https://travis-ci.org/jiangtao/webp-webpack-plugin.svg?branch=master)]
+[![codecov](https://img.shields.io/codecov/c/github/jiangtao/webp-webpack-plugin.svg?style=flat-square)](https://codecov.io/gh/jiangtao/webp-webpack-plugin)
+[![dependencies](https://img.shields.io/david/jiangtao/webp-webpack-plugin.svg?style=flat-square)](https://david-dm.org/jiangtao/webp-webpack-plugin)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/jiangtao/webp-webpack-plugin/master/LICENSE)
+
 [简体中文文档](./README_zh-CN.md)
 
 generate the webp image, make the same `hash` of original image. For example, `vue.e3e41b1.jpg` and `vue.e3e41b1.jpg.webp` exists at the same env.

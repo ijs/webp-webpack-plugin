@@ -1,5 +1,10 @@
 # webp-webpack-plugin
 
+[![Build Status](https://travis-ci.org/jiangtao/webp-webpack-plugin.svg?branch=master)]
+[![codecov](https://img.shields.io/codecov/c/github/jiangtao/webp-webpack-plugin.svg?style=flat-square)](https://codecov.io/gh/jiangtao/webp-webpack-plugin)
+[![dependencies](https://img.shields.io/david/jiangtao/webp-webpack-plugin.svg?style=flat-square)](https://david-dm.org/jiangtao/webp-webpack-plugin)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/jiangtao/webp-webpack-plugin/master/LICENSE)
+
 [English Docs](./README.md)
 
 本插件用于生成 `.webp`格式的图片, 保证与原图生成的`hash`一致。举个例子： `vue.e3e41b1.jpg`和`vue.e3e41b1.jpg.webp`同时存在。 
