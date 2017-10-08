@@ -4,11 +4,9 @@
  * https://webpack.github.io/docs/how-to-write-a-plugin.html
  * why: https://isux.tencent.com/introduction-of-webp.html
  */
-
 const sharp = require('sharp')
-const minify = require('minify')
-const fs = require('fs')
 const path = require('path')
+const { read, compress } = require('./util')
 
 const defaultOpts = {
   match: /\.(png|jpe?g)$/,
@@ -47,16 +45,19 @@ module.exports = class WebpWebpackPlugin {
     })
 
     compiler.plugin('compilation', compilation => {
+
       compilation.plugin('html-webpack-plugin-alter-asset-tags', async (htmlPluginData, next) => {
         if (opts.injectCode) {
-          htmlPluginData.head.unshift(injectScripts)
+          htmlPluginData.head.unshift(opts.injectCode)
         } else if (opts.inject) {
-          injectScripts = injectScripts || await this._getInjectRuntime(runtimePath, opts)
+          if (!injectScripts) {
+            injectScripts = await this._getInjectRuntime(runtimePath, opts)
+          }
           if (injectScripts) {
             htmlPluginData.head.unshift(injectScripts)
+            console.log('[webp webpack plugin]: inject runtime code successfully')
           }
         }
-        console.log('[webp webpack plugin]: inject runtime code successfully')
 
         next(null, htmlPluginData)
       })
@@ -89,8 +90,7 @@ module.exports = class WebpWebpackPlugin {
     return new Promise((resolve, reject) => {
       sharp(inputBuffer).webp(this.opts.webp).toBuffer((err, data, info) => {
         if (err) {
-          reject(err)
-          return
+          return reject(err)  
         }
 
         resolve(data)
@@ -100,7 +100,16 @@ module.exports = class WebpWebpackPlugin {
 
   async wrapWebpRaw(raw, filename) {
     if (raw._value) {
-      return Object.assign(clone(raw), { _value: await this._convertWebp(raw._value), existsAt: `${raw.existsAt}.webp` })
+      const value = await this._convertWebp(raw._value)
+      return Object.assign(clone(raw), {
+        _value: value,
+        source() {
+          return value
+        },
+        size() {
+          return value.length
+        }
+      })
     } else {
       return
     }
@@ -120,28 +129,4 @@ function clone(src) {
   }
 
   return result
-}
-
-function read(filename, encoding = 'utf-8') {
-  return new Promise((resolve, reject) => {
-    fs.readFile(filename, { encoding: encoding }, (err, data) => {
-      if (err) {
-        reject(err)
-        return
-      }
-      resolve(data)
-    })
-  })
-}
-
-function compress(filename) {
-  return new Promise((resolve, reject) => {
-    minify(filename, (error, data) => {
-      if (error) {
-        reject(error)
-        return
-      }
-      resolve(data)
-    })
-  })
 }

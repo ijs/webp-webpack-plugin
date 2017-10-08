@@ -1,4 +1,5 @@
 // run in the broswers
+/* istanbul ignore next */
 ; (function webpWebpackPluginRuntime() {
   function detectWebp() {
     var canvas, supportCanvas

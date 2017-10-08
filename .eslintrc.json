@@ -199,7 +199,7 @@
         ],
         "no-unreachable": 2,
         "no-unused-vars": [
-            1,
+            2,
             {
                 "vars": "all",
                 "args": "none"
@@ -245,7 +245,7 @@
             "always"
         ],
         "space-before-function-paren": [
-            1,
+            2,
             "never"
         ],
         "space-in-parens": [

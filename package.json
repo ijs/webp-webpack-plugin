@@ -1,18 +1,35 @@
 {
   "name": "webp-webpack-plugin",
-  "version": "1.0.1",
+  "version": "1.2.0",
   "description": "webpack plugin of making webp format file ",
   "main": "dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint src/**/*.js",
+    "test": "for v in 1 2 3; do npm run webpack $v; done;",
+    "webpack": "sh tests/config/webpack.sh $1",
+    "lint": "eslint --ext .js src tests",
     "lint:fix": "npm run lint -- --fix",
     "compile": "node_modules/.bin/babel src -d dist",
-    "prepublish": "npm run lint && npm run compile"
+    "prepublish": "npm run test && npm run compile",
+    "codecov": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jiangtao/webp-webpack-plugin.git"
+  },
+  "config": {
+    "ghooks": {
+      "pre-commit": "npm run lint:fix"
+    }
+  },
+  "ava": {
+    "concurrency": 5
+  },
+  "nyc": {
+    "exclude": [
+      "node_modules",
+      "tests/*.js",
+      "tests/**/*.js"
+    ]
   },
   "keywords": [
     "webp",
@@ -33,15 +50,23 @@
     ]
   },
   "dependencies": {
+    "file-loader": "^1.1.5",
     "minify": "^3.0.1",
+    "semver": "^5.4.1",
     "sharp": "^0.18.1",
-    "webpack": "^2.7.0"
+    "url-loader": "^0.6.2",
+    "webpack": "^3.6.0"
   },
   "devDependencies": {
+    "ava": "^0.22.0",
     "babel-cli": "^6.24.1",
     "babel-core": "^6.24.1",
     "babel-plugin-transform-async-to-generator": "^6.24.1",
     "babel-plugin-transform-class-properties": "^6.24.1",
-    "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1"
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
+    "codecov": "^2.3.0",
+    "html-webpack-plugin": "^2.30.1",
+    "husky": "^0.14.3",
+    "nyc": "^11.2.1"
   }
 }

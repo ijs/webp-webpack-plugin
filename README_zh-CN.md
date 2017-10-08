@@ -47,6 +47,10 @@ plugins: [
 
 [2017-09-19] 默认注入runtime代码，支持注入自定义runtime代码
 
+## 不同版本的webpack比较和配置 
+
+[不同版本的webpack比较和配置][https://github.com/jiangtao/webpack-diff-version-test]
+
 ## License 
 
 MIT(开源许可协议)

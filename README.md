@@ -48,6 +48,10 @@ change the webpack plugin `emit` and modify the  `compilation.assets` object, th
 
 Thanks to [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin) that support  [event hooks](https://github.com/jantimon/html-webpack-plugin#events)
 
+## diff version webpack 
+
+[diff version webpack comparison and configuration][https://github.com/jiangtao/webpack-diff-version-test]
+
 ## ChangeLog
 
 [2017-09-19] inject the code that can replace the img src by support webp and developers can inject your custom code
