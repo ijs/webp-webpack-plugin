@@ -1,12 +1,11 @@
 #!/bin/bash
 
 version=$1
-regex="^[1-9][0-9]?$"
 
 echo "install webpack version: $version"
 echo ""
 
-if [[ "$version" =~ $regex ]]; then
+if [[ $version =~ ^[1-9][0-9]?$ ]]; then
   rm -fr src/dist
   npm uni webpack
   npm i webpack@$version.x

@@ -4,7 +4,8 @@
   "description": "webpack plugin of making webp format file ",
   "main": "dist/index.js",
   "scripts": {
-    "test": "npm run chmod && for v in 1 2 3; do npm run webpack $v; done;",
+    "test": "npm run chmod && npm run test:all",
+    "test:all": "for v in 1 2 3; do npm run webpack $v; done;",
     "webpack": "sh tests/config/webpack.sh $1",
     "lint": "eslint --ext .js src tests",
     "lint:fix": "npm run lint -- --fix",
