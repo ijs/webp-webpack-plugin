@@ -9,10 +9,6 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 process.chdir(__dirname)
 
 var Plugin = require('../src/index')
-var mainHtmlPath = path.resolve(process.cwd(), 'dist/index.html')
-var htmlWebpackPlugin = new HtmlWebpackPlugin({
-  filename: mainHtmlPath
-})
 
 var pluginDefault
 var pluginInjectRuntime
@@ -103,41 +99,40 @@ test.cb('webpack default run', t => {
 test.cb('webpack inject runtime', t => {
   pluginInjectRuntime.compiler.run((err, stats) => {
     if (err) {
-      t.throws(function() {
+      t.throws(function () {
         throw err
       })
     }
-    util.read(mainHtmlPath).then(data => {
-      t.true(data.indexOf('window.__webp_webpack_plugin_img_src__') !== -1)
-      t.end()
-    })
+    t.true(fs.readFileSync(pluginInjectRuntime.mainPath, { encoding: 'utf-8' }).indexOf('window.__webp_webpack_plugin_img_src__') !== -1)
+    t.end()
   })
 })
 
-test.only.cb('webpack inject custom code', t => {
+test.cb('webpack inject custom code', t => {
   pluginInjectCustomCode.compiler.run((err, stats) => {
     if (err) {
-      t.throws(function() {
+      t.throws(function () {
         throw err
       })
     }
 
-    util.read(mainHtmlPath).then(data => {
-      t.true(data.indexOf('test webp-webpack-plugin') !== -1)
-      t.end()
-    })
+    t.true(fs.readFileSync(pluginInjectCustomCode.mainPath, { encoding: 'utf-8' }).indexOf('test webp-webpack-plugin') !== -1)
+    t.end()
+
   })
 })
 
 function webpackCreator(type) {
   var pluginOpts = {
     default: {
-      plugins: [htmlWebpackPlugin],
+      mainPath: path.resolve(process.cwd(), 'dist/index.html'),
+      plugins: [],
       opts: {},
       compiler: null
     },
     runtime: {
-      plugins: [htmlWebpackPlugin],
+      mainPath: path.resolve(process.cwd(), 'dist/index-runtime.html'),
+      plugins: [],
       opts: {
         inject: true,
         minify: true
@@ -145,7 +140,8 @@ function webpackCreator(type) {
       compiler: null
     },
     custom: {
-      plugins: [htmlWebpackPlugin],
+      mainPath: path.resolve(process.cwd(), 'dist/index-custom.html'),
+      plugins: [],
       opts: {
         injectCode: "console.log('test webp-webpack-plugin')"
       },
@@ -154,11 +150,17 @@ function webpackCreator(type) {
   }
   var opts = pluginOpts[type].opts
   var plugin = new Plugin(opts)
-  var plugins = pluginOpts[type].plugins.concat(new Plugin(opts))
+  var plugins = pluginOpts[type].plugins.concat(
+    new HtmlWebpackPlugin({
+      filename: pluginOpts[type].mainPath
+    }),
+    new Plugin(opts)
+  )
   var config = require(`./config/webpack${version}`)
   config.plugins = plugins
 
   return {
+    mainPath: pluginOpts[type].mainPath,
     plugin,
     compiler: webpack(config)
   }

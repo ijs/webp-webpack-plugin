@@ -84,9 +84,12 @@ module.exports = class WebpWebpackPlugin {
       if (opts.minify) {
         injectScripts.innerHTML += await compress(path)
       } else {
+        /* istanbul ignore next */
         injectScripts.innerHTML += await read(path)
       }
+      
     } catch (e) {
+      /* istanbul ignore next */
       injectScripts = null
     }
     return injectScripts
@@ -95,8 +98,9 @@ module.exports = class WebpWebpackPlugin {
   _convertWebp(inputBuffer) {
     return new Promise((resolve, reject) => {
       sharp(inputBuffer).webp(this.opts.webp).toBuffer((err, data, info) => {
+        /* istanbul ignore if */
         if (err) {
-          return reject(err)  
+          return reject(err)
         }
 
         resolve(data)
@@ -116,8 +120,6 @@ module.exports = class WebpWebpackPlugin {
           return value.length
         }
       })
-    } else {
-      return
     }
   }
 }
