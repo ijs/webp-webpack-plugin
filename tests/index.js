@@ -78,7 +78,7 @@ test.cb('util read', t => {
 test.cb('webpack default run', t => {
   pluginDefault.compiler.run((err, stats) => {
     if (err) {
-      t.throws(function () {
+      t.throws(function() {
         throw err
       })
     }
@@ -99,7 +99,7 @@ test.cb('webpack default run', t => {
 test.cb('webpack inject runtime', t => {
   pluginInjectRuntime.compiler.run((err, stats) => {
     if (err) {
-      t.throws(function () {
+      t.throws(function() {
         throw err
       })
     }
@@ -111,7 +111,7 @@ test.cb('webpack inject runtime', t => {
 test.cb('webpack inject custom code', t => {
   pluginInjectCustomCode.compiler.run((err, stats) => {
     if (err) {
-      t.throws(function () {
+      t.throws(function() {
         throw err
       })
     }
