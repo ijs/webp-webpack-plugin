@@ -5,7 +5,8 @@ module.exports = {
   },
   output: {
     publicPath: '',
-    filename: 'bundle.js',
+    filename: 'js/[name].[hash:7].js',
+    chunkFilename: 'js/[id].[hash:7].js',
     path: path.resolve(process.cwd(), 'dist')
   },
   resolve: {

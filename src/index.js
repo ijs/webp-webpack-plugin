@@ -48,7 +48,14 @@ module.exports = class WebpWebpackPlugin {
 
       compilation.plugin('html-webpack-plugin-alter-asset-tags', async (htmlPluginData, next) => {
         if (opts.injectCode) {
-          htmlPluginData.head.unshift(opts.injectCode)
+          htmlPluginData.head.unshift({
+            tagName: 'script',
+            closeTag: true,
+            attributes: {
+              type: 'text/javascript'
+            },
+            innerHTML: opts.injectCode
+          })
         } else if (opts.inject) {
           if (!injectScripts) {
             injectScripts = await this._getInjectRuntime(runtimePath, opts)
@@ -58,7 +65,6 @@ module.exports = class WebpWebpackPlugin {
             console.log('[webp webpack plugin]: inject runtime code successfully')
           }
         }
-
         next(null, htmlPluginData)
       })
     })
