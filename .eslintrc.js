@@ -1,4 +1,4 @@
-{
+module.exports = {
     "compilerOptions": {
         "experimentalDecorators": true
     },
@@ -78,7 +78,7 @@
             "property"
         ],
         "eqeqeq": [
-            1,
+            2,
             "allow-null"
         ],
         "generator-star-spacing": [

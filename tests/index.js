@@ -47,7 +47,7 @@ test('plugin inject custom code opts', t => {
   t.is(pluginInjectCustomCode.plugin.opts.inject, false)
   t.is(pluginInjectCustomCode.plugin.opts.imgSrc, 'data-src')
   t.is(pluginInjectCustomCode.plugin.opts.minify, true)
-  t.true(pluginInjectCustomCode.plugin.opts.injectCode.length != 0)
+  t.true(pluginInjectCustomCode.plugin.opts.injectCode.length !== 0)
 })
 
 test.cb('util compress', t => {
