@@ -14,6 +14,7 @@ const defaultOpts = {
   webp: {
     quality: 80
   },
+  limit: 0,
   inject: false,
   imgSrc: 'data-src',
   minify: true,
@@ -36,8 +37,9 @@ module.exports = class WebpWebpackPlugin {
       assets = Object.keys(compilation.assets).filter(assetPath => opts.match.test(assetPath))
 
       for (assetPath of assets) {
-        if (!compilation.assets[`${assetPath}.webp`]) {
-          compilation.assets[`${assetPath}.webp`] = await this.wrapWebpRaw(compilation.assets[assetPath], `${assetPath}.webp`)
+        let raw = compilation.assets[assetPath];
+        if (raw.size() > opts.limit && !compilation.assets[`${assetPath}.webp`]) {
+          compilation.assets[`${assetPath}.webp`] = await this.wrapWebpRaw(raw, `${assetPath}.webp`)
         }
       }
 
