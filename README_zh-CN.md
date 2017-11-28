@@ -39,6 +39,7 @@ plugins: [
 - match 符合正则表达式的图片转换成webp
 - inject 默认是false， 默认不插入runtime代码，优先级低于 injectCode
 - injectCode 默认为空，不为空 优先级高于 inject:true, 插入自定义的runtime代码
+- limit 默认为0，设定转换图片尺寸的阀值。当图片尺寸小于 limit 时则不会生成webp格式的图片
 
 注： runtime代码主要用来对图片进行 webp图片替换逻辑
 

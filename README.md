@@ -39,6 +39,7 @@ plugins: [
 - match regexp that help plugin match the images need to transform to webp
 - inject default false. When the value is false, not inject the runtime code. The priority level is lower than the option `injectCode`
 - injectCode default ''. If the value is not empty, the priority level is more than the option `inject`
+- limit default 0. If the image is smaller than the limit (in bytes) the image will not be transformed to webp
 
 tips： the inject runtime code help to replace the image src with webp format.
 
