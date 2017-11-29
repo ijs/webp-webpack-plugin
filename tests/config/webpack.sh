@@ -9,7 +9,7 @@ if [[ $version =~ ^[1-9][0-9]?$ ]]; then
   rm -fr src/dist
   npm uni webpack
   npm i webpack@$version.x
-  nyc ava tests/index.js
+  ./node_modules/.bin/nyc ./node_modules/.bin/ava tests/index.js
 else 
   echo "invalid version"
   

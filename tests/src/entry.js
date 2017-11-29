@@ -1,2 +1,5 @@
-console.log('test webp-webpack-plugin')
 require('./assets/pic.jpg')
+require('./assets/pic.jpeg')
+require('./assets/pic.svg')
+require('./assets/pic.png')
+require('./assets/pic.gif')
