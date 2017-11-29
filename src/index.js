@@ -39,7 +39,7 @@ module.exports = class WebpWebpackPlugin {
 
       for (assetPath of assets) {
         let raw = compilation.assets[assetPath];
-        if (_this._canConvert(raw.source()) && raw.size() > opts.limit && !compilation.assets[`${assetPath}.webp`]) {
+        if (this._canConvert(raw.source()) && raw.size() > opts.limit && !compilation.assets[`${assetPath}.webp`]) {
           compilation.assets[`${assetPath}.webp`] = await this.wrapWebpRaw(raw, `${assetPath}.webp`)
         }
       }
