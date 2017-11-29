@@ -6,6 +6,7 @@
  */
 const sharp = require('sharp')
 const path = require('path')
+const fileType = require('file-type');
 const { read, compress } = require('./util')
 
 const defaultOpts = {
@@ -38,7 +39,7 @@ module.exports = class WebpWebpackPlugin {
 
       for (assetPath of assets) {
         let raw = compilation.assets[assetPath];
-        if (raw.size() > opts.limit && !compilation.assets[`${assetPath}.webp`]) {
+        if (_this._canConvert(raw.source()) && raw.size() > opts.limit && !compilation.assets[`${assetPath}.webp`]) {
           compilation.assets[`${assetPath}.webp`] = await this.wrapWebpRaw(raw, `${assetPath}.webp`)
         }
       }
@@ -95,6 +96,13 @@ module.exports = class WebpWebpackPlugin {
       injectScripts = null
     }
     return injectScripts
+  }
+
+  _canConvert(inputBuffer) {
+    const type = fileType(inputBuffer);
+    if (!type) return false;
+
+    return type.ext === 'png' || type.ext === 'jpg';
   }
 
   _convertWebp(inputBuffer) {
