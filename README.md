@@ -41,6 +41,7 @@ plugins: [
 - injectCode default ''. If the value is not empty, the priority level is more than the option `inject`
 - limit default 0. If the image is smaller than the limit (in bytes) the image will not be transformed to webp
 - checkStrict default false. Check the transformed image rule. If false, use the `match` options, else limit `png`, `jpeg`, `jpg` suffix image.
+- format default `[name].[ext].webp`, another is `[name].webp`. In order to support more names.
 
 tips： the inject runtime code help to replace the image src with webp format.
 

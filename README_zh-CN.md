@@ -41,6 +41,7 @@ plugins: [
 - injectCode 默认为空，不为空 优先级高于 inject:true, 插入自定义的runtime代码
 - limit 默认为0，设定转换图片尺寸的阀值。当图片尺寸小于 limit 时则不会生成webp格式的图片
 - checkStrict 默认是false.用于检查转换图片的规则，如果是false，则按照`match`参数来匹配，如果是true，则match匹配之后，限制图片格式为`png`,`jpeg`,`jpg`
+- format 默认为 `[name].[ext].webp`, 另外一种 `[name].webp`. 提供两种命名支持。
 
 注： runtime代码主要用来对图片进行 webp图片替换逻辑
 
