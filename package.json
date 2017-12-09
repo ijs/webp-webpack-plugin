@@ -1,6 +1,6 @@
 {
   "name": "webp-webpack-plugin",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "webpack plugin of making webp format file ",
   "main": "dist/index.js",
   "scripts": {
