@@ -66,7 +66,7 @@ plugins: [
 
 ## 推荐阅读
 
-- [Vue移动项目webp接入](https://github.com/jiangtao/blog/issues/10)
+- [Vue移动项目webp接入](https://github.com/jiangtao/blog/issues/10)
 
 ## License 
 
