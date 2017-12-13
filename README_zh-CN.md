@@ -62,7 +62,7 @@ plugins: [
 
 ## 不同版本的webpack比较和配置 
 
-[不同版本的webpack比较和配置][https://github.com/jiangtao/webpack-diff-version-test]
+[不同版本的webpack比较和配置](https://github.com/jiangtao/webpack-diff-version-test)
 
 ## 推荐阅读
 
