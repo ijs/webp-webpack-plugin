@@ -55,15 +55,22 @@ plugins: [
 
 - [2017-09-19] 默认注入runtime代码，支持注入自定义runtime代码
 - [2017-10-05] 增加测试用例，代码覆盖率，支持webpack2，3
+- [2017-10-05] 增加测试用例，代码覆盖率，支持webpack2，3
+- [2017-11-29] 增加limit参数，限制图片大小阀值，太小的图片不转换。
+- [2017-12-09] 支持两种命名格式 `[name].[ext].webp` 和 `[name].webp`
 
 
 ## 不同版本的webpack比较和配置 
 
 [不同版本的webpack比较和配置][https://github.com/jiangtao/webpack-diff-version-test]
 
+## 推荐阅读
+
+- [Vue移动项目webp接入](https://github.com/jiangtao/blog/issues/10)
+
 ## License 
 
-MIT(开源许可协议)
+[MIT](./LICENSE)
 
 
 

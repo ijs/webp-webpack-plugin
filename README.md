@@ -64,11 +64,13 @@ Thanks to [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin)
 
 - [2017-09-19] inject the code that can replace the img src by support webp and developers can inject your custom code
 - [2017-10-05] add tests, travis, eslint and fix webpack2,3 bugs
+- [2017-11-29] add limit options,  if image size is bigger than the limit, transform to webp, else not。
+- [2017-12-09] support two webp format `[name].[ext].webp` 和 `[name].webp`
 
 
 ## LICENSE
 
-MIT
+[MIT](./LICENSE)
 
 
 
