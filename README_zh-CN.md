@@ -7,26 +7,26 @@
 
 [English Docs](./README.md)
 
-本插件用于生成 `.webp`格式的图片, 保证与原图生成的`hash`一致。举个例子： `vue.e3e41b1.jpg`和`vue.e3e41b1.jpg.webp`同时存在。 
+本插件用于生成 `.webp`格式的图片, 保证与原图生成的`hash`一致。举个例子： `vue.e3e41b1.jpg`和`vue.e3e41b1.jpg.webp`同时存在。
 
 ## 下载
 
 ```npm
-npm i -D webp-webpack-plugin 
+npm i -D webp-webpack-plugin
 // or
 yarn add -D webp-webpack-plugin
 ```
 
 ## 使用
 
-在 `webpack.config.js`配置中，, 参数`webp`是图片转换webp工具`sharp`的[配置](http://sharp.dimens.io/en/stable/api-output/#webp) 
+在 `webpack.config.js`配置中，, 参数`webp`是图片转换webp工具`sharp`的[配置](http://sharp.dimens.io/en/stable/api-output/#webp)
 
 ```javascript
 plugins: [
     new WebPWebpackPlugin({
         match: /(jpe?g|png)$/,
-        inject: false, 
-        injectCode: '' 
+        inject: false,
+        injectCode: ''
         webp: {
             quality: 80
         }
@@ -60,7 +60,7 @@ plugins: [
 - [2017-12-09] 支持两种命名格式 `[name].[ext].webp` 和 `[name].webp`
 
 
-## 不同版本的webpack比较和配置 
+## 不同版本的webpack比较和配置
 
 [不同版本的webpack比较和配置](https://github.com/jiangtao/webpack-diff-version-test)
 
@@ -68,7 +68,7 @@ plugins: [
 
 - [Vue移动项目webp接入](https://github.com/jiangtao/blog/issues/10)
 
-## License 
+## License
 
 [MIT](./LICENSE)
 

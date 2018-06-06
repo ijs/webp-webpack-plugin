@@ -12,14 +12,14 @@ generate the webp image, make the same `hash` of original image. For example, `v
 ## Install
 
 ```npm
-npm i -D webp-webpack-plugin 
+npm i -D webp-webpack-plugin
 // or
 yarn add -D webp-webpack-plugin
 ```
 
 ## Usage
 
-in the webpack.config.js, the options `webp` refer to [sharp webp options](http://sharp.dimens.io/en/stable/api-output/#webp) 
+in the webpack.config.js, the options `webp` refer to [sharp webp options](http://sharp.dimens.io/en/stable/api-output/#webp)
 
 ```javascript
 plugins: [
@@ -48,7 +48,7 @@ tips： the inject runtime code help to replace the image src with webp format.
 
 ## principle
 
-- webp transform 
+- webp transform
 
 change the webpack plugin `emit` and modify the  `compilation.assets` object, then generate the webp format image with the same hash as the original img src
 
@@ -56,9 +56,9 @@ change the webpack plugin `emit` and modify the  `compilation.assets` object, th
 
 Thanks to [html-webpack-plugin](https://github.com/jantimon/html-webpack-plugin) that support  [event hooks](https://github.com/jantimon/html-webpack-plugin#events)
 
-## diff version webpack 
+## diff version webpack
 
-[diff version webpack comparison and configuration][https://github.com/jiangtao/webpack-diff-version-test]
+[diff version webpack comparison and configuration](https://github.com/jiangtao/webpack-diff-version-test)
 
 ## ChangeLog
 
