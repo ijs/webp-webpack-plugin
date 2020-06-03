@@ -9,6 +9,8 @@ const path = require('path')
 const fileType = require('file-type')
 const { read, compress } = require('./util')
 
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 const defaultOpts = {
   match: /\.(png|jpe?g)$/,
   // http://sharp.dimens.io/en/stable/api-output/#webp
@@ -40,7 +42,7 @@ module.exports = class WebpWebpackPlugin {
     let injectScripts, opts
     opts = this.opts
 
-    compiler.plugin('emit', async (compilation, next) => {
+    compiler.hooks.emit.tapAsync('webp-webpack-plugin', async (compilation, next) => {
       let assets, assetPath
       assets = Object.keys(compilation.assets).filter(assetPath => opts.match.test(assetPath))
 
@@ -56,11 +58,11 @@ module.exports = class WebpWebpackPlugin {
       next()
     })
 
-    compiler.plugin('compilation', compilation => {
-
-      compilation.plugin('html-webpack-plugin-alter-asset-tags', async (htmlPluginData, next) => {
+    compiler.hooks.compilation.tap('webp-webpack-plugin', (compilation) => {
+      HtmlWebpackPlugin.getHooks(compilation).alterAssetTags.tapAsync('webp-webpack-plugin', async (htmlPluginData, next) => {
+        // Manipulate the content
         if (opts.injectCode) {
-          htmlPluginData.head.unshift({
+          htmlPluginData.assetTags.scripts.unshift({
             tagName: 'script',
             closeTag: true,
             attributes: {
@@ -73,10 +75,11 @@ module.exports = class WebpWebpackPlugin {
             injectScripts = await this._getInjectRuntime(runtimePath, opts)
           }
           if (injectScripts) {
-            htmlPluginData.head.unshift(injectScripts)
+            htmlPluginData.assetTags.scripts.unshift(injectScripts)
             console.log('[webp webpack plugin]: inject runtime code successfully')
           }
         }
+        // Tell webpack to move on
         next(null, htmlPluginData)
       })
     })

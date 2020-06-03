@@ -12,5 +12,4 @@ if [[ $version =~ ^[1-9][0-9]?$ ]]; then
   ./node_modules/.bin/nyc ./node_modules/.bin/ava tests/index.js
 else 
   echo "invalid version"
-  
 fi
